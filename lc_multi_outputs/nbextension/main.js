@@ -18,15 +18,14 @@ define([
 
     // defaults, overridden by server's config
     var options = {
-        cell_executed_alert: false
+        cell_executed_success_alert: false,
+        cell_executed_error_alert: false
     };
 
     var context = new AudioContext()
     var o = null;
     var g = null;
     function feedback_tone(frequency, type) {
-        if (!(options.cell_executed_alert)) return 
-
         o = context.createOscillator()
         g = context.createGain()
         o.type = type
@@ -50,10 +49,12 @@ define([
         } else {
             if (msg.content.status != "ok" && msg.content.status != "aborted") {
                 cell.element.addClass('cell-status-error');
-                feedback_tone(220, 'sawtooth');
+                if (options.cell_executed_error_alert)
+                    feedback_tone(220, 'sawtooth');
             } else if (msg.content.status != "aborted") {
                 cell.element.addClass('cell-status-success');
-                feedback_tone(440, 'triangle');
+                if (options.cell_executed_success_alert)
+                    feedback_tone(440, 'triangle');
             }
         }
     }
