@@ -3,3 +3,4 @@
 /build
 /dist
 /lc_multi_outputs/nbextension/lib/*
+.DS_Store

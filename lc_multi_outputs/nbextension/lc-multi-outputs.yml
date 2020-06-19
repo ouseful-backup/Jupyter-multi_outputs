@@ -14,3 +14,13 @@ Parameters:
   default: 5
   step: 1
   min: 1
+- name: MultiOutputs.cell_executed_alert
+  description: |
+    Audible alert of cell execution completion status
+  input_type: checkbox
+  default: false
+- name: MultiOutputs.run_queue_length_alert
+  description: |
+    Say how many cells are running (NOT YET IMPLEMENTED)
+  input_type: checkbox
+  default: false
